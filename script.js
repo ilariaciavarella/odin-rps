@@ -2,6 +2,17 @@ const rps = ["Rock", "Paper", "Scissors"]
 
 // Get computer's selection using random and store it in a variable
 // First get random index of array
+function getIndex(arr) {
+    return Math.floor(Math.random() * arr.length);
+}
+
+//Use index to get choice from array
+function getComputerChoice() {
+    let choiceInd = getIndex(rps);
+    return rps[choiceInd];
+}
+
+console.log(getComputerChoice());
 
 // Get player's selection using prompt and store it in a variable
 let playerSelection = prompt("Rock, paper or scissors?", "");
