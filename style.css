@@ -25,10 +25,10 @@ button {
     font-size: 32px;
     width: 320px;
     padding: 24px 0;
-    margin: 0 8px;
+    margin: 0 16px;
     font-family: 'Raleway', sans-serif;
     font-weight: 600;
-    border-radius: 72px 0;
+    box-shadow: 10px 10px black;
 }
 
 .score {
@@ -41,4 +41,12 @@ button {
 .comment {
     font-size: 18px;
     font-weight: 400;
+}
+
+.clicked {
+    background-color: hsl(279, 66%, 20%);
+    position: relative;
+    top: 10px;
+    left: 10px;
+    box-shadow: 0 0;
 }
