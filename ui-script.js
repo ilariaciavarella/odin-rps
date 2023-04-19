@@ -14,27 +14,19 @@ function getComputerChoice() {
 }
 
 // Get player's selection using buttons
-const buttons = document.querySelectorAll('.btn');
+// Select buttons from html and add event listener to each
+const buttons = document.querySelectorAll('.choiceBtn');
 
-function clickTr (e) {
-    console.log(e.target);
-    e.target.classList.add('clicked');
-}
+buttons.forEach(button => button.addEventListener('click', () => {
+    // Take innerText and store it in playerChoice
+    // In the meantime get computerChoice
+    let computerSelection = getComputerChoice();
+    let playerSelection = button.textContent;
+    console.log(playerSelection);
+    console.log(computerSelection);
 
-function getPlayerChoice (e) {
-    console.log('Returned');
-    console.log(e.target.innerHTML);
-    return e.target.innerHTML;
-}
-
-buttons.forEach(button => button.addEventListener('click', clickTr));
-buttons.forEach(button => button.addEventListener('click', getPlayerChoice));
-buttons.forEach(button => button.addEventListener('click', singleRound));
-
-// Compare every case (rock vs paper, rock vs scissors, paper vs scissors, rock vs rock, paper vs paper, scissors vs scissors)
-function singleRound(computerSelection, playerSelection) {
-    computerSelection = getComputerChoice();
-    playerSelection = getPlayerChoice();
+    // Compare choices
+    let singleResult;
 
     switch (playerSelection) {
         case "Rock":
@@ -66,11 +58,8 @@ function singleRound(computerSelection, playerSelection) {
                 singleResult = "It's a tie! Try again.";
             }
             break;
-
-        default:
-            singleResult = "What you entered is not valid, try again.";
     }
 
     // Return winner
-    console.log(singleResult);
-}
+    console.log (singleResult);
+}))
