@@ -17,11 +17,17 @@ function getComputerChoice() {
 // Select buttons from html and add event listener to each
 const buttons = document.querySelectorAll('.choiceBtn');
 
-buttons.forEach(button => button.addEventListener('click', () => {
+// Select comment to add result of each round
+const comment = document.querySelector('.comment');
+
+// Select score to change it every round
+const score = document.querySelector('.score');
+
+function singleRound() {
     // Take innerText and store it in playerChoice
     // In the meantime get computerChoice
     let computerSelection = getComputerChoice();
-    let playerSelection = button.textContent;
+    let playerSelection = this.textContent;
     console.log(playerSelection);
     console.log(computerSelection);
 
@@ -62,4 +68,10 @@ buttons.forEach(button => button.addEventListener('click', () => {
 
     // Return winner
     console.log (singleResult);
-}))
+    comment.textContent = singleResult;
+}
+
+buttons.forEach(button => button.addEventListener('click', singleRound));
+buttons.forEach(button => button.addEventListener('click', () => {
+    button.classList.add('clicked');
+}));
