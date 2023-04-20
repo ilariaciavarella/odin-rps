@@ -23,7 +23,6 @@ const comment = document.querySelector('.comment');
 // Select score to change it every round
 const score = document.querySelector('.score');
 
-
 let playerScore = 0;
 let computerScore = 0;
 
@@ -91,17 +90,6 @@ function clickTransition () {
         this.classList.remove('clicked');
     }, 500)
 }
-
-let roundCounter = 0;
-buttons.forEach(button => button.addEventListener('click', () => {
-    roundCounter++;
-    if (roundCounter > 5) {
-        buttons.forEach(button => button.removeEventListener('click', singleRound));
-        buttons.forEach(button => button.removeEventListener('click', clickTransition));
-        console.log('enough');
-    }
-    console.log(roundCounter);
-}));
 
 buttons.forEach(button => button.addEventListener('click', singleRound));
 buttons.forEach(button => button.addEventListener('click', clickTransition));

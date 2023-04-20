@@ -10,7 +10,7 @@ body {
 }
 
 .buttons {
-    width: 100vw;
+    width: 75vw;
     height: 100vh;
     position: absolute;
     display: flex;
