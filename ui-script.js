@@ -23,6 +23,10 @@ const comment = document.querySelector('.comment');
 // Select score to change it every round
 const score = document.querySelector('.score');
 
+
+let playerScore = 0;
+let computerScore = 0;
+
 function singleRound() {
     // Take innerText and store it in playerChoice
     // In the meantime get computerChoice
@@ -39,7 +43,7 @@ function singleRound() {
             if (computerSelection === "Paper") {
                 singleResult = "You lose! Paper beats Rock";
             } else if (computerSelection === "Scissors") {
-                singleResult = "You won! Rock beats Scissors";
+                singleResult = "You win! Rock beats Scissors";
             } else {
                 singleResult = "It's a tie! Try again.";
             }
@@ -49,7 +53,7 @@ function singleRound() {
             if (computerSelection === "Scissors") {
                 singleResult = "You lose! Scissors beats Paper";
             } else if (computerSelection === "Rock") {
-                singleResult = "You won! Paper beats Rock";
+                singleResult = "You win! Paper beats Rock";
             } else {
                 singleResult = "It's a tie! Try again.";
             }
@@ -59,7 +63,7 @@ function singleRound() {
             if (computerSelection === "Rock") {
                 singleResult = "You lose! Rock beats Scissors";
             } else if (computerSelection === "Paper") {
-                singleResult = "You won! Scissors beats Paper";
+                singleResult = "You win! Scissors beats Paper";
             } else {
                 singleResult = "It's a tie! Try again.";
             }
@@ -69,9 +73,35 @@ function singleRound() {
     // Return winner
     console.log (singleResult);
     comment.textContent = singleResult;
+
+    // Update score
+    if (singleResult.includes('win')) {
+        playerScore++;
+    } else if (singleResult.includes('lose')) {
+        computerScore ++;
+    }
+    console.log(`${playerScore} - ${computerScore}`);
+
+    score.textContent = `${playerScore} - ${computerScore}`;
 }
 
-buttons.forEach(button => button.addEventListener('click', singleRound));
+function clickTransition () {
+    this.classList.add('clicked');
+    setTimeout(() => {
+        this.classList.remove('clicked');
+    }, 500)
+}
+
+let roundCounter = 0;
 buttons.forEach(button => button.addEventListener('click', () => {
-    button.classList.add('clicked');
+    roundCounter++;
+    if (roundCounter > 5) {
+        buttons.forEach(button => button.removeEventListener('click', singleRound));
+        buttons.forEach(button => button.removeEventListener('click', clickTransition));
+        console.log('enough');
+    }
+    console.log(roundCounter);
 }));
+
+buttons.forEach(button => button.addEventListener('click', singleRound));
+buttons.forEach(button => button.addEventListener('click', clickTransition));
